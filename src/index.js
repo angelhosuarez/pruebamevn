@@ -3,8 +3,9 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const app = express();
 mongoose
-    .connect('mongodb://angelho:2740522ab@192.168.0.199:27017/mevn')
-    .then(db => console.log('base conectada'))
+    .connect('mongodb://angelho:2740522ab@192.168.0.199:27017/mevn', {
+        useNewUrlParser: true
+    })
     .catch(err => console.log(err));
 //configuraciones
 app.set('port', 80);
@@ -18,5 +19,4 @@ app.use('/api/tasks', require('./routes/tasks'));
 app.use('/prueba', require('./routes/prueba'));
 //archivos estaticos;
 app.use(express.static(__dirname + '/public'));
-app.listen(puerto, () => {  
-});
+app.listen(puerto, () => {});
